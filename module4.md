@@ -38,11 +38,7 @@ To check for errors in log output: `systemctl status apache2`
 
 Next, check to see that PHP is installed and working with Apache.
 First, create a PHP file in document root: `cd /var/www/html/` `sudo nano info.php`
-To the file, add:
- 
-`<?php 
-phpinfo();
-?>`
+Then added information to the file that would give system information about PHP, Apache and the server when opened using the VM's external IP addresss.
 
 Save, close and open VM's external IP address. If the php info document show, that means that PHP has been installed and is working with Apache.
 I then deleted info.php: `sudo rm /var/www/html/infor.php`
