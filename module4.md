@@ -1,6 +1,6 @@
 # **Mini Portfolio Module 4**
 
-### **What is a LAMP stack?**
+## **What is a LAMP stack?**
 
 **LAMP** is an acronym that stands for Linux Apache MySQL PHP.
 **Linux** is the operating system.
@@ -10,7 +10,7 @@
 
 It is commonly used for creating web servers that have extra funcitonality through PHP and MySQL.
 
-### **Istalling and configuring Apache**
+**Installing and configuring Apache**
 
 The command to install Apache is `sudo apt install apache2`.
 After installing it, I checked to ensure it was up and running: `systemctl status apache2`.
@@ -29,7 +29,7 @@ Then, I went to the external IP address. If everything was working correctly, th
 This was the only place that I had trouble. When I went to my IP address, the correct information was not showing. 
 Other than the typical typos, I did not have issues with installing or configuring Apache.
 
-### **Installing and configuring PHP**
+**Installing and configuring PHP**
 
 To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
 To create a connection between PHP and Apache: `sudo systemctl restart apache2`
@@ -39,7 +39,7 @@ To check for errors in log output: `systemctl status apache2`
 Next, check to see that PHP is installed and working with Apache.
 First, create a PHP file in document root: `cd /var/www/html/` `sudo nano info.php`
 To the file, add: 
-````<?php 
+```<?php 
 phinfo();
 ?>```
 
@@ -70,8 +70,7 @@ sudo nano index.php```
 I entered a combination of html and php code into nano, saved it, and went to the external IP to see if everything worked. 
 This is where I had an issue. The html information was still showing, not php. Eventually it turned out that I needed to restart Apache, then return to the IP address. This quickly fixed the issue.
 
-
-### **Installing and configuring MySQL**
+**Installing and configuring MySQL**
 
 To install MySQL Community Server package: `sudo apt install mysql-server`
 Check for which versions are available if you need a specific one: `apt policy mysql-server`
