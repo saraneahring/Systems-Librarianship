@@ -87,10 +87,21 @@ show databases;
 grant all privileges on opacdb.* to 'opacuser'@'localhost' with grant option;```
 
 Next, I had to exit the bash shell and entire the MySQL server:
-`nano .bashrc`
+
+```
+nano .bashrc
+```
+
 To the bottom of the file, I added:
-`export MYSQL_PS1="[\d]> "`
+
+```
+export MYSQL_PS1="[\d]>"
+```
+
 Then, save the source file and exited:
-`source ~/.bashrc`
+
+```
+source ~/.bashrc
+```
 After this, I was able to log back into MySQL with the `opacuser` account. From there, I was able to create a table and practice editing it. 
 I did not run into any issues with this part of the assignment. It all went pretty smoothly.
