@@ -82,9 +82,11 @@ Then I created an `opacuser` regular user account:
 `create user 'opacuser'@'localhost' 'identified by 'XXXXXXXX';`
 After this, I created a database and granted `opacuser`all privileges:
 
-```create database opacdb default character set utf8mb4 collate utf8mb4_unicode_ci;
+```
+create database opacdb default character set utf8mb4 collate utf8mb4_unicode_ci;
 show databases;
-grant all privileges on opacdb.* to 'opacuser'@'localhost' with grant option;```
+grant all privileges on opacdb.* to 'opacuser'@'localhost' with grant option;
+```
 
 Next, I had to exit the bash shell and entire the MySQL server:
 
