@@ -31,10 +31,10 @@ Other than the typical typos, I did not have issues with installing or configuri
 
 **Installing and configuring PHP**
 
-To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
-To create a connection between PHP and Apache: `sudo systemctl restart apache2`
-To confirm the installed version: `php -v`
-To check for errors in log output: `systemctl status apache2`
+-To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
+-To create a connection between PHP and Apache: `sudo systemctl restart apache2`
+-To confirm the installed version: `php -v`
+-To check for errors in log output: `systemctl status apache2`
 
 Next, check to see that PHP is installed and working with Apache.
 First, create a PHP file in document root: `cd /var/www/html/` `sudo nano info.php`
@@ -47,9 +47,11 @@ After then, I changed the Apache default page from index.html to index.php
 To do this, I had to edit the `dir.conf` file in the `/ect/apache2/mods-enabled/` directory.
 I saved the orginal file and then used nano change information in the `dir.conf` file:
 
-`cd /etc/apache2/mods-enabled/`
-`sudo cd dir.conf dir.conf.bak`
-`sudo nano dir.conf`
+```
+cd /etc/apache2/mods-enabled/
+sudo cd dir.conf dir.conf.bak
+sudo nano dir.conf
+```
  
 I had to change the order of index.php and index.html so that the php file came first: 
 `DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm`
@@ -58,28 +60,37 @@ I then checked the configuration using `apachectl`:
 
 I received the OK message which meant I could then reload the Apache configuration, restart the service and check the status:
 
-`sudo systemctl reload apache2`
-`sudo systemctl restart apache2`
-`systemclt status apache2`
+```
+sudo systemctl reload apache2
+sudo systemctl restart apache2
+systemclt status apache2
+```
 
 After this, I created an index.php file using nano: 
-`cd /var/www/html/`
-`sudo nano index.php`
+
+```
+cd /var/www/html/`
+`sudo nano index.php
+```
 
 I entered a combination of html and php code into nano, saved it, and went to the external IP to see if everything worked. 
 This is where I had an issue. The html information was still showing, not php. Eventually it turned out that I needed to restart Apache, then return to the IP address. This quickly fixed the issue.
 
 **Installing and configuring MySQL**
 
-To install MySQL Community Server package: `sudo apt install mysql-server`
-Check for which versions are available if you need a specific one: `apt policy mysql-server`
-Confirm the version you are using: `mysql --version`
-Check to see if MySQL is successfully running and enabled: `systemctl status mysql`
-Run a post installation script to perform securty check and make sure everything is secure: `sudo mysql_secure_installation`
+-To install MySQL Community Server package: `sudo apt install mysql-server`
+-Check for which versions are available if you need a specific one: `apt policy mysql-server`
+-Confirm the version you are using: `mysql --version`
+-Check to see if MySQL is successfully running and enabled: `systemctl status mysql`
+-Run a post installation script to perform securty check and make sure everything is secure: `sudo mysql_secure_installation`
 
 After this I was able to log into the database: `sudo mysql -u root`
 Then I created an `opacuser` regular user account: 
-`create user 'opacuser'@'localhost' 'identified by 'XXXXXXXX';`
+
+```
+create user 'opacuser'@'localhost' 'identified by 'XXXXXXXX';
+```
+
 After this, I created a database and granted `opacuser`all privileges:
 
 ```
