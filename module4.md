@@ -31,10 +31,11 @@ Other than the typical typos, I did not have issues with installing or configuri
 
 **Installing and configuring PHP**
 
--To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
--To create a connection between PHP and Apache: `sudo systemctl restart apache2`
--To confirm the installed version: `php -v`
--To check for errors in log output: `systemctl status apache2`
+*To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
+
+*To create a connection between PHP and Apache: `sudo systemctl restart apache2`
+*To confirm the installed version: `php -v`
+*To check for errors in log output: `systemctl status apache2`
 
 Next, check to see that PHP is installed and working with Apache.
 First, create a PHP file in document root: `cd /var/www/html/` `sudo nano info.php`
@@ -78,11 +79,15 @@ This is where I had an issue. The html information was still showing, not php. E
 
 **Installing and configuring MySQL**
 
--To install MySQL Community Server package: `sudo apt install mysql-server`
--Check for which versions are available if you need a specific one: `apt policy mysql-server`
--Confirm the version you are using: `mysql --version`
--Check to see if MySQL is successfully running and enabled: `systemctl status mysql`
--Run a post installation script to perform securty check and make sure everything is secure: `sudo mysql_secure_installation`
+*To install MySQL Community Server package: `sudo apt install mysql-server`
+
+*Check for which versions are available if you need a specific one: `apt policy mysql-server`
+
+*-Confirm the version you are using: `mysql --version`
+
+*Check to see if MySQL is successfully running and enabled: `systemctl status mysql`
+
+*Run a post installation script to perform securty check and make sure everything is secure: `sudo mysql_secure_installation`
 
 After this I was able to log into the database: `sudo mysql -u root`
 Then I created an `opacuser` regular user account: 
