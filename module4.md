@@ -34,7 +34,9 @@ Other than the typical typos, I did not have issues with installing or configuri
 *To install PHP along with libapache2-mod-php packages: `sudo apt install php libapache-mod-php`
 
 *To create a connection between PHP and Apache: `sudo systemctl restart apache2`
+
 *To confirm the installed version: `php -v`
+
 *To check for errors in log output: `systemctl status apache2`
 
 Next, check to see that PHP is installed and working with Apache.
