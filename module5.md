@@ -10,11 +10,11 @@ Relational databases store bibliographic records in tables. These databases are 
 
 **Step-by-Step Setup:**
 
--First, create a search page using HTML code. I created a file called “mylibrary.html” where the html code was placed. This code allows the construction of a webpage that indicates the information the user will need to search the catalog. For example, a search bar and date fields to search copyright dates. 
+*First, create a search page using HTML code. I created a file called “mylibrary.html” where the html code was placed. This code allows the construction of a webpage that indicates the information the user will need to search the catalog. For example, a search bar and date fields to search copyright dates. 
 	
--Then, a file entitled “search.php” is created. The line  `<form method="post" action="search.php">` links the html page to the php.search page. The php code entered into nano is used to enable MySQL to query the database for the information placed by the user in the webpage.
+*Then, a file entitled “search.php” is created. The line  `<form method="post" action="search.php">` links the html page to the php.search page. The php code entered into nano is used to enable MySQL to query the database for the information placed by the user in the webpage.
  
--When someone submits the information on the search page, the PHP script will be activated. This will activate MySQL which will query the database to find and retrieve the search information. 
+*When someone submits the information on the search page, the PHP script will be activated. This will activate MySQL which will query the database to find and retrieve the search information. 
 
 -Once the information has been retrieved, the information contained in the table will be displayed to the user on the webpage.
 
