@@ -22,6 +22,8 @@ Relational databases store bibliographic records in tables. These databases are 
 
 -To make the cataloging module more real-world like, there would be more tables in the database to store more data. The graphical interface would also be more complex. CSS and JavaScript would be used to make the interface more user friendly and stylized. 
 
+-Necessary configuration steps include  
+
 **Key Details:**
 
 Here are some of the key details that ensure the system operates functionally: 
