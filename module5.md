@@ -120,15 +120,53 @@ Relational databases store bibliographic records in tables. These databases are 
 
 Here are some of the key details that ensure the system operates functionally: 
 
-* One important detail in the cataloging module is that the form created through the html file must mimic the data structure of the books table. For example, the fields we created were author, title, publisher, and copyright. This means those are the fields that must be contained in the form. 
+* One important detail in the cataloging module is that the form created through the HTML file must mimic the data structure of the books table. For example, the fields we created were author, title, publisher, and copyright. This means those are the fields that must be contained in the form. 
 
-* For both the OPAC and cataloging modules, an important step is to make sure that the html file links to the php file.
+* For both the OPAC and cataloging modules, an important step is to make sure that the HTML file links to the PHP file.
  
-	* the php file must be referenced in the html file in order for them to work together. In the OPAC **mylibrary.html** file, the code, <a href="opac.php">OPAC</a>, creates a link between the html file and the php file. Without this link, the php file, that activates MySQL and enables the database to be searched, could not be accessed.
+	* the PHP file must be referenced in the html FILE in order for them to work together. In the OPAC **mylibrary.html** file, the code, <a href="opac.php">OPAC</a>, creates a link between the HTML file and the PHP file. Without this link, the PHP file, that activates MySQL and enables the database to be searched, could not be accessed.
 
-	 * the same goes for the cataloging module. The code, `<form action="insert.php" method="post">`, entered into the **index.html** file creates a connection to the php file, which allows the database to be searched.
+	* the same goes for the cataloging module. The code, `<form action="insert.php" method="post">`, entered into the **index.html** file creates a connection to the PHP file, which allows the database to be searched.
 
 
 **Using Documentation:**
 
-I did not understand a lot of the code, so I tried to look up some of it to try and understand it better. 
+Although some the PHP code used in the OPAC and cataloging modules wasn't too difficult to decipher, there were some things I needed to look up to try and understand better.  
+
+* I kept seeing the word `echo` and looked up what it meant. I found that it is just telling the machine to print what follows `echo` to the screen. 
+For example, the following code means to print the table with the results, but if there are no results, print "No results found".  
+
+```
+echo "</table>";
+        } else {
+            echo "<p>No results found.</p>";
+        }
+```
+
+* I wanted to know what `Prepared statement to prevent SQL injection` meant. I found that SQL injection is a way that hackers can access a database and potentially steal data or destroy the database.
+The code that follows this gives information for how SQL injection will be prevented. 
+This is the code that follows
+
+```
+$stmt = $conn->prepare("SELECT * FROM books 
+                                WHERE (author LIKE ? OR title LIKE ? OR publisher LIKE ?) 
+                                AND copyright BETWEEN ? AND ?");
+
+        // Use wildcard search
+        $search_param = "%$search%";
+        $stmt->bind_param("sssss", $search_param, $search_param, $search_param, $start_date, $end_date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+```
+From what I understand, this means that the exact search terms the user inputs will not be used in the query. Instead `?` will be used as a placeholder. The next part of the code establishes the search parameters. `%` will be added around the search term. The next parameter takes the `?` and binds it to an actual value, which are listed in the parenthesis. This is so that the information the user input is not treated as code, but data. This enables the prevention of SQL injection. The last couple of lines are pretty straightforward. They just all the query to be executed and return results.  
+
+Honestly, ChatGPT was the easiest way to look up what the code meant. I was told in an another class that it can be inaccurate for looking up code, but it seemed very thorough in providing explanations. It was easier than trying to do a Google search where there might be an answer, but not the same thorough explanations. I couldn't really find a website other than ChatGPT that would allow me to input the code and return explanations. I suppose this may be an example when ChatGPT can be useful considering I was just using it to learn more about the code rather than using it to search for code to use, and did not just cope and paste answers. After I received an answer, I would use Google to try and confirm the meaning. This seemed to be a good way to double check that the information I was finding was correct.
+
+The "Security" section under the cataloging module something else that I had a bit more difficult grasping. 
+
+* I did not know what htpasswd meant, but the the `man htpasswd` was helpful in understanding this more. htpasswd is used to create and update files where passwords are stored. It also allows the passwords to be encrypted. 
+
+* I also did not understand what **.htaccess** meant. I just searched Google to try and find out why this was file that was created. I found that it means "Hyper Access" and that it is a configuration file. It different uses, but we used it to allow our sites to be password protected. 
+
+Other than the information listed above that wasn't explained in the lectures or text, I didn't really come across gaps in the provided materials. I thought it was all pretty straigthforward and easy to understand. 
+ 
