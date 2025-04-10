@@ -45,76 +45,76 @@ Relational databases store bibliographic records in tables. These databases are 
 
 	* Creating a username and password in order to log in to the cataloging module is one example: 
 			
-		* First, an authentication file in the **/etc/apache2** directory is created. This where configuration files are stored for Apache2. We created the username libcat using the following code:
+	* First, an authentication file in the **/etc/apache2** directory is created. This where configuration files are stored for Apache2. We created the username libcat using the following code:
 
-		```
-		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+	```
+	sudo htpasswd -c /etc/apache2/.htpasswd libcat
 
-		```
+	```
 
-		* Then, an authentication file in the **/etc/apache2** directory is created. This file includes the username and a hashed password. Using the libcat username, this is the code that we used:
+	* Then, an authentication file in the **/etc/apache2** directory is created. This file includes the username and a hashed password. Using the libcat username, this is the code that we used:
 	
 
-		```
-		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+	```
+	sudo htpasswd -c /etc/apache2/.htpasswd libcat
 
-		```
+	```
 	
-		* After this, we have to inform Apache2 that the `htpasswd` is what we will use to control access to the catalogging module. This is done in a text editor.
+	* After this, we have to inform Apache2 that the `htpasswd` is what we will use to control access to the catalogging module. This is done in a text editor.
 	
-		```
-		sudo nano /etc/apache2/apache2.conf
+	```
+	sudo nano /etc/apache2/apache2.conf
 
-		```
+	```
 		
-		* Next, in the apache2.conf file, go to	line 172 where the following text is found:
+	* Next, in the apache2.conf file, go to	line 172 where the following text is found:
 
-		```
-		<Directory /var/www/>
-		 Options Indexes FollowSymLinks
- 		 AllowOverride None
- 		 Require all granted
-		</Directory>
+	```
+	<Directory /var/www/>
+	 Options Indexes FollowSymLinks
+ 	 AllowOverride None
+ 	 Require all granted
+	</Directory>
 	
-		```
+	```
 	
-		* **None** must be changed to **All** 
+	* **None** must be changed to **All** 
 	
-		* Then, go to the cataloging directory and create a file called .htaccess with the text editor
+	* Then, go to the cataloging directory and create a file called .htaccess with the text editor
 	
-		```
-		cd /var/www/html/cataloging
-		sudo nano .htaccess
+	```
+	cd /var/www/html/cataloging
+	sudo nano .htaccess
 	
-		```
+	```
 	
-		* Add the following text:
+	* Add the following text:
 	
-		```
-		AuthType Basic
-		AuthName "Authorization Required"
-		AuthUserFile /etc/apache2/.htpasswd
-		Require valid-user
+	```
+	AuthType Basic
+	AuthName "Authorization Required"
+	AuthUserFile /etc/apache2/.htpasswd
+	Require valid-user
 	
-		```
+	```
 	
-		* Next, if the configuration file is ok, restart Apache2
+	* Next, if the configuration file is ok, restart Apache2
 			
-		* Anohter configuration step involves permission and ownership.
+	* Anohter configuration step involves permission and ownership.
 	
-		* First the ownership of **/var/www/html/** can be changed to **www-data**, which is Apache2's user account.
+	* First the ownership of **/var/www/html/** can be changed to **www-data**, which is Apache2's user account.
 	
-		```
-		sudo chown :www-data /var/www/html
+	```
+	sudo chown :www-data /var/www/html
 	
-		```
+	```
 	
-		* Then make it so that when new files or directories are created in **/var/www/html**, they will inherit the group ownership of **www-data**. 
+	* Then make it so that when new files or directories are created in **/var/www/html**, they will inherit the group ownership of **www-data**. 
 	
-		```
-		sudo chmod -R g+s /var/www/html
+	```
+	sudo chmod -R g+s /var/www/html
 	
-		```
+	```
 		
 **Key Details:**
 
