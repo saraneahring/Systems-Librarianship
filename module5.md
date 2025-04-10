@@ -22,26 +22,81 @@ Relational databases store bibliographic records in tables. These databases are 
 
 * To make the cataloging module more real-world like, there would be more tables in the database to store more data. The graphical interface would also be more complex. CSS and JavaScript would be used to make the interface more user friendly and stylized. 
 
-* Necessary configuration steps include  
+* Some necessary configuration steps when setting up the database:
 
+	* First, the  user must be granted privileges to be able to create a database, which requires logging in as the root user.
+	```
+	sudo mysql -u root
+	```
+   
+	* Then, through the root account, a database can be created and privileges can be granted on the new database to the regular user.
+	```
+	mysql> create database DatebaseName;
+	mysql> grant all privileges on DatabaseName.* to 'regularusername'@'localhost';
+ 	```
+	* Now, the root MySQL account can be exited, and the regular account can be logged in to. The database is not ready to be used.
+
+*Some necessary configuration steps when setting up the OPAC and catalog modules:
+
+	* Creating a username and password in order to log in to the cataloging module is one example: 
+			
+		* First, an authentication file in the **/etc/apache2** directory is created. This where configuration files are stored for Apache2. We created the username libcat using the following code:
+		```
+		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+		```
+		* Then, an authentication file in the **/etc/apache2** directory is created. This file includes the username and a hashed password. Using the libcat username, this is the code that we used:
+		```
+		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+		```
+		* After this, we have to inform Apache2 that the `htpasswd` is what we will use to control access to the catalogging module. This is done in a text editor.
+		```sudo nano /etc/apache2/apache2.conf
+		```
+		* Next, in the apache2.conf file, go to	line 172 where the following text is found:
+		```
+		<Directory /var/www/>
+		 Options Indexes FollowSymLinks
+ 		 AllowOverride None
+ 		 Require all granted
+		</Directory>
+		```
+		* **None** must be changed to **All** 
+		* Then, go to the cataloging directory and create a file called .htaccess with the text editor
+		```
+		cd /var/www/html/cataloging
+		sudo nano .htaccess
+		```
+		* Add the following text:
+		```
+		AuthType Basic
+		AuthName "Authorization Required"
+		AuthUserFile /etc/apache2/.htpasswd
+		Require valid-user
+		```
+		* Next, if the configuration file is ok, restart Apache2
+			
+	* Anohter configuration step involves permission and ownership.
+		* First the ownership of **/var/www/html/** can be changed to **www-data**, which is Apache2's user account.
+		```
+		sudo chown :www-data /var/www/html
+		```
+		* Then make it so that when new files or directories are created in **/var/www/html**, they will inherit the group ownership of **www-data**. 
+		```
+		sudo chmod -R g+s /var/www/html
+		```
+		
 **Key Details:**
 
 Here are some of the key details that ensure the system operates functionally: 
 
-* the php file must be referenced in the html file in order for them to work together. In the OPAC mylibrary.html file, the code, <a href="opac.php">OPAC</a>, creates a link between the html file and the php file. Without this link, the php file, that enables the database to be searched, could not be accessed.
+* One important detail in the cataloging module is that the form created through the html file must mimic the data structure of the books table. For example, the fields we created were author, title, publisher, and copyright. This means those are the fields that must be contained in the form. 
 
-* the same goes for the cataloging module. The code, `<form action="insert.php" method="post">`, entered into the html file creates a connection to the php file, which allows the database to be searched.
+* For both the OPAC and cataloging modules, an important step is to make sure that the html file links to the php file.
+ 
+	* the php file must be referenced in the html file in order for them to work together. In the OPAC **mylibrary.html** file, the code, <a href="opac.php">OPAC</a>, creates a link between the html file and the php file. Without this link, the php file, that activates MySQL and enables the database to be searched, could not be accessed.
 
-* one important detail in the cataloging module is that the form created through the html file must mimic the data structure of the books table. For example, the fields we created were author, title, publisher, and copyright. This means those are the fields that must be contained in the form. 
+	 * the same goes for the cataloging module. The code, `<form action="insert.php" method="post">`, entered into the **index.html** file creates a connection to the php file, which allows the database to be searched.
 
-* another important detail in making the catalog password protected, is to find this block of code in the apache2.config file 
 
-```
-<Directory /var/www/>
-  Options Indexes FollowSymLinks
-  AllowOverride None
-  Require all granted
-</Directory>
-```
+**Using Documentation:**
 
-And change “None” to all. I somehow messed up when doing this and I was not asked for a username and password when I access my external IP address. Once I discovered this problem, I was able to fix it and it worked. 
+I did not understand a lot of the code, so I tried to look up some of it to try and understand it better. 
