@@ -41,7 +41,7 @@ Relational databases store bibliographic records in tables. These databases are 
 
 	* Now, the root MySQL account can be exited, and the regular account can be logged in to. The database is not ready to be used.
 
-*Some necessary configuration steps when setting up the OPAC and catalog modules:
+* Some necessary configuration steps when setting up the OPAC and catalog modules:
 
 	* Creating a username and password in order to log in to the cataloging module is one example: 
 			
