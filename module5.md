@@ -28,6 +28,7 @@ Relational databases store bibliographic records in tables. These databases are 
 
 	```
 	sudo mysql -u root
+
 	```
    
 	* Then, through the root account, a database can be created and privileges can be granted on the new database to the regular user.
@@ -35,6 +36,7 @@ Relational databases store bibliographic records in tables. These databases are 
 	```
 	mysql> create database DatebaseName;
 	mysql> grant all privileges on DatabaseName.* to 'regularusername'@'localhost';
+
  	```
 
 	* Now, the root MySQL account can be exited, and the regular account can be logged in to. The database is not ready to be used.
@@ -47,6 +49,7 @@ Relational databases store bibliographic records in tables. These databases are 
 
 		```
 		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+
 		```
 
 		* Then, an authentication file in the **/etc/apache2** directory is created. This file includes the username and a hashed password. Using the libcat username, this is the code that we used:
@@ -54,11 +57,14 @@ Relational databases store bibliographic records in tables. These databases are 
 
 		```
 		sudo htpasswd -c /etc/apache2/.htpasswd libcat
+
 		```
 	
 		* After this, we have to inform Apache2 that the `htpasswd` is what we will use to control access to the catalogging module. This is done in a text editor.
 	
-		```sudo nano /etc/apache2/apache2.conf
+		```
+		sudo nano /etc/apache2/apache2.conf
+
 		```
 		
 		* Next, in the apache2.conf file, go to	line 172 where the following text is found:
@@ -69,6 +75,7 @@ Relational databases store bibliographic records in tables. These databases are 
  		 AllowOverride None
  		 Require all granted
 		</Directory>
+	
 		```
 	
 		* **None** must be changed to **All** 
@@ -78,6 +85,7 @@ Relational databases store bibliographic records in tables. These databases are 
 		```
 		cd /var/www/html/cataloging
 		sudo nano .htaccess
+	
 		```
 	
 		* Add the following text:
@@ -87,6 +95,7 @@ Relational databases store bibliographic records in tables. These databases are 
 		AuthName "Authorization Required"
 		AuthUserFile /etc/apache2/.htpasswd
 		Require valid-user
+	
 		```
 	
 		* Next, if the configuration file is ok, restart Apache2
@@ -97,12 +106,14 @@ Relational databases store bibliographic records in tables. These databases are 
 	
 		```
 		sudo chown :www-data /var/www/html
+	
 		```
 	
 		* Then make it so that when new files or directories are created in **/var/www/html**, they will inherit the group ownership of **www-data**. 
 	
 		```
 		sudo chmod -R g+s /var/www/html
+	
 		```
 		
 **Key Details:**
