@@ -1,4 +1,4 @@
-### Module 5 Mini Portfolio
+### OPAC and Cataloging Module Documentation
 
 **Introduction:**
 
