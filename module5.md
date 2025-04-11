@@ -6,15 +6,15 @@ An OPAC is a database that users can access online to look up bibliographic reco
 
 **Relational Databases:**
 
-Relational databases store bibliographic records in tables. These databases are linked together through primary and foreign keys. Each category of bibliographic information is separated into its own column where individual values are placed. For example, there is likely a title column that contains all of the titles for each book in separate fields. In a relational database, there are multiple tables that are connected to each other through primary and foreign keys. This allows the connected tables to all be searched when using MySQL to query specific information. These databases interact with the OPAC through a PHP file that activates MySQL to perform a query to find the information entered into the OPAC search bar. 
+Relational databases store bibliographic records in tables. Each category of bibliographic information is separated into its own column where individual values are placed. For example, there is likely a title column that contains all of the titles for each book in separate fields. In a relational database, there are multiple tables that are connected to each other through primary and foreign keys. This allows the connected tables to all be searched when using MySQL to query specific information. The information is broken up into separate tables to makes it easier to update and delete information.  These databases interact with the OPAC through a PHP file that activates MySQL to perform a query to find the information entered into the OPAC search bar. 
 
 **Step-by-Step Setup:**
 
-* First, create a search page using HTML code. I created a file called “mylibrary.html” where the html code was placed. This code allows the construction of a webpage that indicates the information the user will need to search the catalog. For example, a search bar and date fields to search copyright dates. 
+* First, create a search page using HTML code. I created a file called **mylibrary.html** where the HTML code was placed. This code allows the construction of a webpage that indicates the fields that can be used to search the catalog. For example, there is a search bar and date fields to search copyright dates. 
 	
-* Then, a file entitled “search.php” is created. The line  `<form method="post" action="search.php">` links the html page to the php.search page. The php code entered into nano is used to enable MySQL to query the database for the information placed by the user in the webpage.
+* Then, a file entitled **search.php** is created. The line  `<form method="post" action="search.php">` links the HTML page to the **php.search** page. The PHP code entered into nano is used to enable MySQL to query the database for the information placed by the user in the webpage.
  
-* When someone submits the information on the search page, the PHP script will be activated. This will activate MySQL which will query the database to find and retrieve the search information. 
+* When someone submits the information on the search page, the PHP script will be activate MySQL which will query the database to find and retrieve the search information. 
 
 * Once the information has been retrieved, the information contained in the table will be displayed to the user on the webpage.
 
@@ -160,7 +160,7 @@ $stmt = $conn->prepare("SELECT * FROM books
 ```
 From what I understand, this means that the exact search terms the user inputs will not be used in the query. Instead `?` will be used as a placeholder. The next part of the code establishes the search parameters. `%` will be added around the search term. The next parameter takes the `?` and binds it to an actual value, which are listed in the parenthesis. This is so that the information the user input is not treated as code, but data. This enables the prevention of SQL injection. The last couple of lines are pretty straightforward. They just all the query to be executed and return results.  
 
-Honestly, ChatGPT was the easiest way to look up what the code meant. I was told in an another class that it can be inaccurate for looking up code, but it seemed very thorough in providing explanations. It was easier than trying to do a Google search where there might be an answer, but not the same thorough explanations. I couldn't really find a website other than ChatGPT that would allow me to input the code and return explanations. I suppose this may be an example when ChatGPT can be useful considering I was just using it to learn more about the code rather than using it to search for code to use, and did not just cope and paste answers. After I received an answer, I would use Google to try and confirm the meaning. This seemed to be a good way to double check that the information I was finding was correct.
+Honestly, ChatGPT ended up being the best way I found to look up what the code meant. I was told in an another class that it can be inaccurate for looking up code, but it seemed very thorough in providing explanations. It was easier than trying to do a Google search where there might be an answer, but not the same thorough explanations. I couldn't really find a website other than ChatGPT that would allow me to input the code and return explanations. I suppose this may be an example when ChatGPT can be useful considering I was just using it to learn more about the code rather than using it to search for code to use, and I did not just cope and paste the answers. After I received an answer, I would use Google to try and confirm the meaning. This seemed to be a good way to double check that the information I was finding was correct.
 
 The "Security" section under the cataloging module something else that I had a bit more difficult grasping. 
 
