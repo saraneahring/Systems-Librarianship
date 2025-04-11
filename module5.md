@@ -80,7 +80,7 @@ Relational databases store bibliographic records in tables. Each category of bib
 	
 	* **None** must be changed to **All** 
 	
-	* Then, go to the cataloging directory and create a file called .htaccess with the text editor
+	* Then, go to the cataloging directory and create a file called .htaccess with the text editor.
 	
 	```
 	cd /var/www/html/cataloging
@@ -98,7 +98,7 @@ Relational databases store bibliographic records in tables. Each category of bib
 	
 	```
 	
-	* Next, if the configuration file is ok, restart Apache2
+	* Next, if the configuration file is ok, restart Apache2.
 			
 	* Anohter configuration step involves permission and ownership.
 	
@@ -145,7 +145,7 @@ echo "</table>";
 
 * I wanted to know what `Prepared statement to prevent SQL injection` meant. I found that SQL injection is a way that hackers can access a database and potentially steal data or destroy the database.
 The code that follows this gives information for how SQL injection will be prevented. 
-This is the code that follows
+This is the code that follows:
 
 ```
 $stmt = $conn->prepare("SELECT * FROM books 
@@ -160,7 +160,7 @@ $stmt = $conn->prepare("SELECT * FROM books
 ```
 From what I understand, this means that the exact search terms the user inputs will not be used in the query. Instead `?` will be used as a placeholder. The next part of the code establishes the search parameters. `%` will be added around the search term. The next parameter takes the `?` and binds it to an actual value, which are listed in the parenthesis. This is so that the information the user input is not treated as code, but data. This enables the prevention of SQL injection. The last couple of lines are pretty straightforward. They just all the query to be executed and return results.  
 
-Honestly, ChatGPT ended up being the best way I found to look up what the code meant. I was told in an another class that it can be inaccurate for looking up code, but it seemed very thorough in providing explanations. It was easier than trying to do a Google search where there might be an answer, but not the same thorough explanations. I couldn't really find a website other than ChatGPT that would allow me to input the code and return explanations. I suppose this may be an example when ChatGPT can be useful considering I was just using it to learn more about the code rather than using it to search for code to use, and I did not just cope and paste the answers. After I received an answer, I would use Google to try and confirm the meaning. This seemed to be a good way to double check that the information I was finding was correct.
+Honestly, ChatGPT ended up being the best way I found to look up what the code meant. I was told in an another class that it can be inaccurate for looking up code, but it seemed very thorough in providing explanations. It was easier than trying to do a Google search where there might be an answer, but not the same thorough explanations. I couldn't really find a website other than ChatGPT that would allow me to input the code and return explanations. I suppose this may be an example when ChatGPT can be useful considering I was just using it to learn more about the code rather than using it to search for code to use, and I did not just copy and paste the answers. After I received an answer, I would use Google to try and confirm the meaning. This seemed to be a good way to double check that the information I was finding was correct.
 
 The "Security" section under the cataloging module something else that I had a bit more difficult grasping. 
 
