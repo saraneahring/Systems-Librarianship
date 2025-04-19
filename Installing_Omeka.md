@@ -34,6 +34,7 @@ sudo mysql -u root
 ```
 
 	* Then I created the new user and database and granted all privileges to the user.
+
 ```
 create user 'omeka'@'localhost' identified by 'password';
 create database omeka;
