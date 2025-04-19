@@ -28,6 +28,7 @@ sudo systemctl restart apache2
 * First, I created a new user and database for the **Omeka** installation. I did this by following the steps used in installing **WordPress**.
 
 	* I switched to the **Linux root user** and logged in as the **MySQL root user**.
+
 ```
 sudo su
 sudo mysql -u root
