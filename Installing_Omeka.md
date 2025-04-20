@@ -10,6 +10,7 @@ Before installing Omeka there were a couple of prerequisites I need to install.
 
 ```
 sudo apt install imagemagick
+
 ```
 * Then, I had to install `mod_write`. This is used to create user friendly URLs for items and collection in the digital library.
 
@@ -34,7 +35,7 @@ sudo su
 sudo mysql -u root
 ```
 
-	* Then I created the new user and database and granted all privileges to the user.
+	*  Then I created the new user and database and granted all privileges to the user.
 
 ```
 create user 'omeka'@'localhost' identified by 'password';
