@@ -103,7 +103,7 @@ systemctl restart apache2
 koha-create --create-db bibliolib
 ```
 
-* Then, I told **Apache2** to listen on port 8080 by opening the `ports.conf` file on **nano** and changing `Listen 80` to `Listen 8080`.
+* Then, I told **Apache2** to listen on port 8080 by opening the `ports.conf` file on **nano** and changing `Listen 80` to `Listen 8080` (This ended up being wrong--see below).
 
 ```
 nano /etc/apache2/ports.conf 
@@ -144,4 +144,4 @@ This is where I hit an issue. I followed the steps below to change the settings 
 * I found **OPAC** on the side bar.
 * I scrolled down to `OPACBaseURL`, entered my IP Address, http://35.222.164.82 and hit **Save all OPAC Preferences**  
 	
-After going through the documentation a couple of times, I could not figure out where I went wrong. Eventually, I posted on Teams asking if anyone could help me figure out where I went wrong. After some time trying to pinpoint the issue, Dr. Burns was able to find that I port 80 was not open. This was because when adding Listen 8080 to the port.conf file, I deleted Listen 80. I was supposed to keep Listen 80 so that port 80 would remain open in addition to port 8080. After this fix, I was able to access my public facing OPAC.
+After going through the documentation a couple of times, I could not figure out where I went wrong. Eventually, I posted on Teams asking if anyone could help me figure out where I went wrong. After some time trying to pinpoint the issue, Dr. Burns was able to find that I port 80 was not open. This was because when adding `Listen 8080` to the `port.conf file`, I deleted `Listen 80`. I was supposed to keep `Listen 80` so that `port 80` would remain open in addition to `port 8080`. After this fix, I was able to access my public facing OPAC.
