@@ -138,9 +138,10 @@ I followed the steps and created an **Adminstrator identity** at the end of the 
 
 This is where I hit an issue. I followed the steps below to change the settings in order to view my public facing OPAC. However, when I went to my external IP Address, it said that it could not connect to the server. 
 
-* I selected **More** from teh top drop down box. 
+* I selected **More** from the top drop down box. 
 * Then, I chose **Administration**.
 * Next, I clicked on **System Preferences**
 * I found **OPAC** on the side bar.
 * I scrolled down to `OPACBaseURL`, entered my IP Address, http://35.222.164.82 and hit **Save all OPAC Preferences**  
 	
+After going through the documentation a couple of times, I could not figure out where I went wrong. Eventually, I posted on Teams asking if anyone could help me figure out where I went wrong. After some time trying to pinpoint the issue, Dr. Burns was able to find that I port 80 was not open. This was because when adding Listen 8080 to the port.conf file, I deleted Listen 80. I was supposed to keep Listen 80 so that port 80 would remain open in addition to port 8080. After this fix, I was able to access my public facing OPAC.
